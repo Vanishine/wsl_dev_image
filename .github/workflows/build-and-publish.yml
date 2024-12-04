@@ -29,7 +29,6 @@ jobs:
           mkdir build
           devcontainer build build --workspace-folder . --image-name ghcr.io/vanishine/${{ github.event.repository.name }}
           ls -alh build
-      # Push the Docker image to GHCR
       - name: Push Docker image
         run: |
           docker push ghcr.io/vanishine/${{ github.event.repository.name }}:latest
