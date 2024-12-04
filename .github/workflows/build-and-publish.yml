@@ -1,7 +1,5 @@
 name: Build and Publish Docker Image
 
-on: push
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -27,8 +25,7 @@ jobs:
         run: |
           npm install -g @devcontainers/cli
           mkdir build
-          #devcontainer build build --workspace-folder . --image-name ghcr.io/vanishine/${{ github.event.repository.name }}
-          docker pull ghcr.io/vanishine/${{ github.event.repository.name }}:latest
+          devcontainer build build --workspace-folder . --image-name ghcr.io/vanishine/${{ github.event.repository.name }}
           ls -alh build
       # Push the Docker image to GHCR
       - name: Push Docker image
