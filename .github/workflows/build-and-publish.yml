@@ -21,9 +21,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
       # Build the Docker image
       - name: Build Docker image
         run: |
+          npm install -g @devcontainers/cli
+          mkdir build
+          devcontainer build build --workspace-folder .
           docker build -t ghcr.io/vanishine/${{ github.event.repository.name }}:latest .
 
       # Push the Docker image to GHCR
