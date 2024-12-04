@@ -31,7 +31,7 @@ jobs:
           ls -alh build
       - name: Push Docker image
         run: |
-          docker push ghcr.io/vanishine/${{ github.event.repository.name }}:latest
+          #docker push ghcr.io/vanishine/${{ github.event.repository.name }}:latest
           docker create --name wsl_dev_image ghcr.io/vanishine/${{ github.event.repository.name }}:latest
           docker export wsl_dev_image | gzip > wsl_dev_image.tgz
       - name: Upload Docker image to Release
