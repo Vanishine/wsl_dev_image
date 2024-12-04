@@ -1,10 +1,5 @@
 name: Build and Publish Docker Image
 
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -40,5 +35,6 @@ jobs:
           docker export wsl_dev_image | gzip > wsl_dev_image.tgz
       - name: Upload Docker image to Release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: wsl_dev_image.tgz
